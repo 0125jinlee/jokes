@@ -1,10 +1,15 @@
 <html>
   <head>
     <title>Jo¢es</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <h1>HI! {{jokes}}</h1>
+    <h1>JOKES OF THE DAY</h1>
+    <div class="jokebox">
+      <h2>{{ jokes }}</h2>
+    </div>
 
   </body>
 </html>
