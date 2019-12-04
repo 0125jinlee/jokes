@@ -1,6 +1,6 @@
 # To run under flask, env FLASK_APP=jokes.py flask run
 
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ def index():
     elif data["type"] == "twopart":
         jokes = data["setup"] + "\n" + data["delivery"]
     
-    return render_template("index.html", jokes=jokes)
+    return render_template("index.html", jokes=jokes, key=stripe_keys['publishable_key'])
 
 # To get data from jokes API
 
@@ -22,9 +22,39 @@ response = requests.get("https://sv443.net/jokeapi/category/Any")
 
 data = response.json()
 
-# Set your secret key: remember to change this to your live secret key in production
-# See your keys here: https://dashboard.stripe.com/account/apikeys
+# To get the key from stored in os and assign it to stripe.api_key
+
+import os
 
 import stripe
-# Stripe public key
-stripe.api_key = 'pk_test_GoGmPnZrTiW5zxrxvKI4vjMW00YOPoShDw'
+
+stripe_keys = {
+    'secret_key': os.environ['STRIPE_SECRET_KEY'],
+    'publishable_key': os.environ['STRIPE_PUBLISHABLE_KEY']
+}
+
+stripe.api_key = stripe_keys['secret_key']
+
+
+@app.route('/charge', methods=['POST'])
+def charge():
+    try:
+        # amount in cents
+        amount = 50
+
+        customer = stripe.Customer.create(
+            email='sample@customer.com',
+            source=request.form['stripeToken']
+        )
+
+        stripe.Charge.create(
+            customer=customer.id,
+            amount=amount,
+            currency='usd',
+            description='Flask Charge'
+        )
+
+        return render_template('charges.html', amount=amount)
+    except stripe.error.StripeError:
+        return render_template('error.html')
+
