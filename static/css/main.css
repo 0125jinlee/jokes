@@ -8,14 +8,22 @@ h1 {
 }
 
 h2 {
-  font-size: 30px;
   text-align: center;
+  font-size: 30px;
 }
 
-.jokebox {
+.jokes {
   width: 600px;
   height: 300px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+.payments {
+  width: 600px;
+  height: 300px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
   text-align: center;
 }
