@@ -33,6 +33,10 @@ stripe_keys = {
     'publishable_key': os.environ['STRIPE_PUBLISHABLE_KEY']
 }
 
+# Need to export to OS everytime terminal reboots 
+# export STRIPE_PUBLISHABLE_KEY="pk_test_GoGmPnZrTiW5zxrxvKI4vjMW00YOPoShDw"
+# export STRIPE_SECRET_KEY=""
+
 stripe.api_key = stripe_keys['secret_key']
 
 @app.route('/charge', methods=['POST'])
