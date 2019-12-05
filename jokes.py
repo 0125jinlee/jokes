@@ -35,7 +35,6 @@ stripe_keys = {
 
 stripe.api_key = stripe_keys['secret_key']
 
-
 @app.route('/charge', methods=['POST'])
 def charge():
     try:
@@ -55,6 +54,8 @@ def charge():
         )
 
         return render_template('charges.html', amount=amount)
+    
     except stripe.error.StripeError:
+        
         return render_template('error.html')
 

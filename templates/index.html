@@ -8,27 +8,38 @@
   </head>
 
   <body>
-    <h1>JOKES OF THE DAY</h1>
-    
-    <div class="jokes">
-      <h2>{{ jokes }}</h2>
-      <h2>If you liked the joke, please donate 1 cent!</h2>
-    </div>
-    <div>
-      <h2>Click to Donate!</h2>
-      <form action="/charge" method="post">
-        <script 
-          src="https://checkout.stripe.com/checkout.js"
-          class="stripe-button"
-          data-key="{{ key }}"
-          data-description="Laughter Charge"
-          data-amount="1"
-          data-locale="auto">
-        </script>
-      </form>
-    </div>
-    
-    {% block content %}{% endblock %}
+    <h1>JO¢ES OF THE DAY</h1>
+    <div class="main">
+      <img src="../static/images/whysoserious1.png" alt="background" id="joker">
+      <div class="jokestext">
+        <h2>{{ jokes }}</h2>
+      </div>
+      
+      <h2>&darr; PRESS TO DONATE A CENT! &darr;</h2>
+      
+      <div class="payment">
+        <form action="/charge" method="post">
+          <script 
+            src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="{{ key }}"
+            data-description="Laughter Charge"
+            data-amount="1"
+            data-locale="auto">
+          </script>
+          <script>
+          // Hide default stripe button, be careful there if you
+          // have more than 1 button of that class
+            document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+          </script>
+          <button type="submit" class="button">
+            <img src="../static/images/funny.png" alt="DONATE!">
+          </button>
+        </form>
+      </div>
 
+      <h2>Developed by <a href="https://www.linkedin.com/in/jin-won-lee-94731439/" target="_blank">Jin Won Lee</a></h2>
+    </div>
+    {% block content %}{% endblock %}
   </body>
 </html>

@@ -1,21 +1,65 @@
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
+  text-align: center;
 }
 
 h1 {
+  margin: 40px auto;
   text-align: center;
-  font-size: 50px;
+  font-size: 80px;
+  margin-bottom: 10px;
 }
 
-h2 {
-  text-align: center;
-  font-size: 30px;
-}
-
-.jokes {
+.main {
   width: 600px;
-  height: 300px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.3);
+  height: auto;
+  position: relative;
+  display: inline-block;
   text-align: center;
+}
+
+.main #joker {
+  position: relative;
+  opacity: 0.25;
+}
+
+.jokestext {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  font-size: 40px;
+  overflow: scroll;
+}
+
+button {
+  background: transparent;
+  border: transparent;
+  border-radius: 10px;
+}
+
+button:hover {
+  background: lightgray;
+}
+
+button img {
+  width: 144px;
+  height: 120px;
+  position: relative;
+  text-align: center;
+  display: inline-block;
+}
+
+.payment {
+  text-align: center;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  text-shadow: 2px 2px lightgray;
+  text-decoration: none;
 }
